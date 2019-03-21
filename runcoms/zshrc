@@ -3,9 +3,9 @@
 #
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
-#  
-    # export TERM="xterm-256color"
-    export LC_ALL=en_US.UTF-8  
+#
+    export TERM="xterm-256color"
+    export LC_ALL=en_US.UTF-8
     export LANG=en_US.UTF-8
 
     POWERLEVEL9K_MODE="nerdfont-complete"
@@ -157,8 +157,6 @@ fi
 # Customize to your needs...
 for config_file ($HOME/.yadr/zsh/*.zsh) source $config_file
 
-. $HOME/.asdf/asdf.sh
-
 . $HOME/.asdf/completions/asdf.bash
 
 #autoload -Uz promptinit
@@ -171,19 +169,10 @@ POWERLEVEL9K_MODE='nerdfont-complete'
 
 if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
-#PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PYENV_HOME="$HOME/.pyenv"
 
-# Pinning my mysql to 5.6 for now
-export PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH:/usr/local/Cellar/mysql@5.6/5.6.42/bin
 
-# todo - I think i want to set this snippet up as job on jenkins....maybe for continuous load testing?
-# will try to clean this out within a week or so
-#function mkcallapi() {
-#volumename=$1
-#jsondata='{"name": "'$volumename'","labels": "label1 label2","source": {"type": "volume", "volume": "myvolumename"},"config": {"sticky": #false},"provider": null}'
-#curl -d $jsondata -H "Content-Type: application/json" -X POST --socks5-hostname localhost:9999 http://storage/volumes
-#}
-#alias mkvolcp='mkcallapi'
+export PATH=$PYENV_HOME:/usr/local/opt/coreutils/libexec/gnubin:$PATH
 
 alias cat='bat'
 alias makeitso='cd ~; brewu; ./Projects/update.sh'
@@ -195,12 +184,11 @@ export PIP_VIRTUALENV_BASE=$WORKON_HOME
 export PIP_RESPECT_VIRTUALENV="true"
 export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 
-if [[ -r /usr/local/bin/virtualenvwrapper.sh ]]; then
-    source /usr/local/bin/virtualenvwrapper.sh
-else
-    echo "WARNING: Can't find virtualenvwrapper.sh"
-fi
-
+#if [[ -r /usr/local/bin/virtualenvwrapper.sh ]]; then
+#    source /usr/local/bin/virtualenvwrapper.sh
+#else
+#    echo "WARNING: Can't find virtualenvwrapper.sh"
+#fi
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
