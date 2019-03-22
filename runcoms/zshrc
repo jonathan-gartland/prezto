@@ -156,7 +156,7 @@ fi
 # Customize to your needs...
 for config_file ($HOME/.yadr/zsh/*.zsh) source $config_file
 
-. $HOME/.asdf/completions/asdf.bash
+# . $HOME/.asdf/completions/asdf.bash
 
 #autoload -Uz promptinit
 #promptinit
