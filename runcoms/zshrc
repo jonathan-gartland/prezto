@@ -156,20 +156,13 @@ fi
 # Customize to your needs...
 for config_file ($HOME/.yadr/zsh/*.zsh) source $config_file
 
-# . $HOME/.asdf/completions/asdf.bash
-
-#autoload -Uz promptinit
-#promptinit
-#prompt steef_simplified
-#unalias mysql
-
 export VIRTUAL_ENV_DISABLE_PROMPT=1
+
 POWERLEVEL9K_MODE='nerdfont-complete'
 
 if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
 alias cat='bat'
-alias makeitso='cd ~; brewu; ./Projects/update.sh'
 
 # virtualenv & an extra pyenv settings
 export WORKON_HOME=$HOME/.virtualenvs
