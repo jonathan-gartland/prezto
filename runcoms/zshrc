@@ -146,7 +146,6 @@
     POWERLEVEL9K_BATTERY_CHARGING_BACKGROUND="$DEFAULT_BACKGROUND"
     POWERLEVEL9K_BATTERY_CHARGED_BACKGROUND="$DEFAULT_BACKGROUND"
     POWERLEVEL9K_BATTERY_DISCONNECTED_BACKGROUND="$DEFAULT_BACKGROUND"
-    
 
 
 # Source Prezto.
@@ -169,15 +168,10 @@ POWERLEVEL9K_MODE='nerdfont-complete'
 
 if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
-export PYENV_HOME="$HOME/.pyenv"
-
-
-export PATH=$PYENV_HOME:/usr/local/opt/coreutils/libexec/gnubin:$PATH
-
 alias cat='bat'
 alias makeitso='cd ~; brewu; ./Projects/update.sh'
 
-# virtualenv & pyenv settings
+# virtualenv & an extra pyenv settings
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
 export PIP_VIRTUALENV_BASE=$WORKON_HOME
