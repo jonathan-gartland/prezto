@@ -177,6 +177,9 @@ export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 #    echo "WARNING: Can't find virtualenvwrapper.sh"
 #fi
 
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH=$PYENV_ROOT:$PATH
+
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
 #[[ -f /Users/jgartland/Projects/webdriverio/packages/wdio-lambda-runner/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/jgartland/Projects/webdriverio/packages/wdio-lambda-runner/node_modules/tabtab/.completions/serverless.zsh
