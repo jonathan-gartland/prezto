@@ -50,7 +50,7 @@
     #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context ssh root_indicator dir_writable dir )
     POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon virtualenv root_indicator context dir_writable dir vcs)
     #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator context dir_writable dir vcs)
-    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time background_jobs status time ssh)
+    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time background_jobs status time ssh node_version)
 
     POWERLEVEL9K_VCS_CLEAN_BACKGROUND="green"
     POWERLEVEL9K_VCS_CLEAN_FOREGROUND="$DEFAULT_BACKGROUND"
@@ -163,7 +163,8 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
 alias cat='bat'
-alias makeitso='cd ~; brewu; cd Projects/scm_ensemble; pyenv activate scm_ensemble; ./scm_ensemble.py -u _; source deactivate; cd ~'
+alias makeitso='cd ~; brewu; cd Projects/scm_ensemble; ./scm_ensemble.py -u _; cd ~'
+
 # virtualenv & an extra pyenv settings
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
@@ -198,5 +199,4 @@ export PATH="$PATH:/usr/local/opt/mysql@5.6/bin"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 
