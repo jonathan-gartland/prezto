@@ -165,6 +165,11 @@ if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 alias cat='bat'
 alias makeitso='cd ~; brewu; cd Projects/scm_ensemble; ./scm_ensemble.py -u _; cd ~'
 
+alias bqa='ssh -f jgartland@bastion.qa.cashstar.net -L 23306:db1.qa.aws:3306 -N'
+alias bsemi='ssh -f jgartland@bastion.semi.cashstar.net -L 13306:db1.semi.aws:3306 -N'
+alias kt='ps -ax|grep ssh|egrep -ve grep -ve agent|awk {"print \$1"}|xargs kill'
+
+
 # virtualenv & an extra pyenv settings
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
