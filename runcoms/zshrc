@@ -1,3 +1,4 @@
+
 #
 # Executes commands at the start of an interactive session.
 #
@@ -50,8 +51,7 @@
     #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context ssh root_indicator dir_writable dir )
     POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon virtualenv root_indicator context dir_writable dir vcs)
     #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator context dir_writable dir vcs)
-    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time background_jobs status time ssh) # node_version)
-
+    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time background_jobs status time) # ssh node_version)
     POWERLEVEL9K_VCS_CLEAN_BACKGROUND="green"
     POWERLEVEL9K_VCS_CLEAN_FOREGROUND="$DEFAULT_BACKGROUND"
     POWERLEVEL9K_VCS_MODIFIED_BACKGROUND="yellow"
@@ -165,6 +165,11 @@ if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 alias cat='bat'
 alias makeitso='cd ~; brewu; cd Projects/scm_ensemble; ./scm_ensemble.py -u _; cd ~'
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
+
+alias bqa='ssh -f jgartland@bastion.qa.cashstar.net -L 23306:db1.qa.aws:3306 -N'
+alias bsemi='ssh -f jgartland@bastion.semi.cashstar.net -L 13306:db1.semi.aws:3306 -N'
+alias kt='ps -ax|grep ssh|egrep -ve grep -ve agent|awk {"print \$1"}|xargs kill'
+
 # virtualenv & an extra pyenv settings
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
