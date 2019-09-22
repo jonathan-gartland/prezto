@@ -25,9 +25,9 @@
     POWERLEVEL9K_CONTEXT_ROOT_BACKGROUND="$DEFAULT_BACKGROUND"
 
     POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR="\uE0B4"
-    POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR="%F{yellow}\uE0B5%f" #"%F{$(( $DEFAULT_BACKGROUND))}|%f"
+    POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR="%F{yellow}|%f" #"%F{$(( $DEFAULT_BACKGROUND))}|%f"
     POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR="\uE0B6"
-    POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR="%F{$(( $DEFAULT_BACKGROUND - 2 ))}\uE0B7%f"
+    POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR="%F{$(( $DEFAULT_BACKGROUND - 2 ))}|%f"
 
     #POWERLEVEL9K_PROMPT_ON_NEWLINE=true
     POWERLEVEL9K_RPROMPT_ON_NEWLINE=false
@@ -50,7 +50,7 @@
     #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context ssh root_indicator dir_writable dir )
     POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon virtualenv root_indicator context dir_writable dir vcs)
     #POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator context dir_writable dir vcs)
-    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time background_jobs status time) # ssh node_version)
+    POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(command_execution_time background_jobs status time ssh)
 
     POWERLEVEL9K_VCS_CLEAN_BACKGROUND="green"
     POWERLEVEL9K_VCS_CLEAN_FOREGROUND="$DEFAULT_BACKGROUND"
@@ -113,11 +113,11 @@
     #POWERLEVEL9K_ROOT_ICON=$'\uFF03' # ＃
     POWERLEVEL9K_ROOT_ICON=$'\uF198'  # 
 
-    #POWERLEVEL9K_SSH_FOREGROUND="$DEFAULT_FOREGROUND"
+    POWERLEVEL9K_SSH_FOREGROUND="$DEFAULT_FOREGROUND"
     POWERLEVEL9K_SSH_FOREGROUND="yellow"
-    #POWERLEVEL9K_SSH_BACKGROUND="$DEFAULT_BACKGROUND"
+    POWERLEVEL9K_SSH_BACKGROUND="$DEFAULT_BACKGROUND"
     POWERLEVEL9K_SSH_BACKGROUND="$(( $DEFAULT_BACKGROUND + 2 ))"
-    #POWERLEVEL9K_SSH_BACKGROUND="$(( $DEFAULT_BACKGROUND - 2 ))"
+    POWERLEVEL9K_SSH_BACKGROUND="$(( $DEFAULT_BACKGROUND - 2 ))"
     POWERLEVEL9K_SSH_ICON="\uF489"  # 
 
     POWERLEVEL9K_HOST_LOCAL_FOREGROUND="$DEFAULT_FOREGROUND"
@@ -163,12 +163,6 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
 alias cat='bat'
-alias makeitso='cd ~; brewu; cd Projects/scm_ensemble; ./scm_ensemble.py -u _; cd ~'
-
-alias bqa='ssh -f jgartland@bastion.qa.cashstar.net -L 23306:db1.qa.aws:3306 -N'
-alias bsemi='ssh -f jgartland@bastion.semi.cashstar.net -L 13306:db1.semi.aws:3306 -N'
-alias kt='ps -ax|grep ssh|egrep -ve grep -ve agent|awk {"print \$1"}|xargs kill'
-
 
 # virtualenv & an extra pyenv settings
 export WORKON_HOME=$HOME/.virtualenvs
@@ -185,13 +179,12 @@ export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 
 export PYENV_ROOT="$HOME/.pyenv"
 # export PATH=$PYENV_ROOT/bin:$PATH
-#eval "$(pyenv init -)"
-#eval "$(pyenv virtualenv-init -)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 export LDFLAGS="-L/usr/local/opt/openssl/lib"
 export CPPFLAGS="-L/usr/local/opt/openssl/include"
 
-export SCM_ENSEMBLE_PATH_TO_REPOSITORIES="~/Projects"
 export PATH="$PATH:/usr/local/opt/mysql@5.6/bin"
 
 # tabtab source for serverless package
