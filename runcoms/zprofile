@@ -34,6 +34,7 @@ fi
 if [[ -z "$LANG" ]]; then
   export LANG='en_US.UTF-8'
 fi
+export LC_ALL=en_US.UTF-8
 
 #
 # Paths
@@ -41,11 +42,6 @@ fi
 
 # Ensure path arrays do not contain duplicates.
 typeset -gU cdpath fpath mailpath path
-
-# Set the list of directories that cd searches.
-# cdpath=(
-#   $cdpath
-# )
 
 # Set the list of directories that Zsh searches for programs.
 path=(
@@ -59,15 +55,10 @@ path=(
 # Less
 #
 
-# Set the default Less options.
-# Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
-# Remove -X to enable it.
 if [[ -z "$LESS" ]]; then
   export LESS='-g -i -M -R -S -w -X -z-4'
 fi
 
-# Set the Less input preprocessor.
-# Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.
 if [[ -z "$LESSOPEN" ]] && (( $#commands[(i)lesspipe(|.sh)] )); then
   export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
 fi
@@ -84,29 +75,98 @@ fi
 TMPPREFIX="${TMPDIR%/}/zsh"
 
 #
-# Custom Environment
+# Homebrew
 #
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+#
+# Development Environment Variables
+#
+
+# Android
 export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$ANDROID_HOME/platform-tools:$PATH
-export PATH=$ANDROID_HOME/tools:$PATH
-export PATH=$ANDROID_TOOLS/latest/bin:$PATH
 
-export PATH="$HOME/.pyenv/bin:$PATH"
+# Python
+export PYENV_ROOT="$HOME/.pyenv"
 
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# Java
+export SDKMAN_DIR="$HOME/.sdkman"
 
-if command -v pyenv 1>/dev/null 2>&1; then
-    export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$PYENV_ROOT/bin:$PATH"
-    eval "$(pyenv init --path)"
-    eval "$(pyenv init -)"
-fi
+# Node
+export NVM_DIR="$HOME/.nvm"
 
-# added by Snowflake SnowflakeCLI installer v1.0
-export PATH=/Applications/SnowflakeCLI.app/Contents/MacOS/:$PATH
+# Airflow
+export AIRFLOW_HOME=~/airflow
 
-# added by Snowflake SnowSQL installer v1.2
-export PATH=/Applications/SnowSQL.app/Contents/MacOS:$PATH
+# LSP
+export ENABLE_LSP_TOOLS=1
+
+#
+# PATH additions (tools)
+#
+
+# Android SDK
+path=(
+  $ANDROID_HOME/platform-tools(N)
+  $ANDROID_HOME/tools(N)
+  $path
+)
+
+# Python (pyenv)
+path=(
+  $PYENV_ROOT/bin(N)
+  $path
+)
+
+# Java (jenv)
+path=(
+  $HOME/.jenv/bin(N)
+  $path
+)
+
+# Flutter/Dart
+path=(
+  $HOME/fvm/default/bin(N)
+  $HOME/flutter/bin(N)
+  $path
+)
+
+# Ruby (RVM)
+path=(
+  $HOME/.rvm/bin(N)
+  $path
+)
+
+# .NET
+path=(
+  $HOME/.dotnet/tools(N)
+  $path
+)
+
+# Maestro (mobile testing)
+path=(
+  $HOME/.maestro/bin(N)
+  $path
+)
+
+# MySQL
+path=(
+  /opt/homebrew/opt/mysql@8.0/bin(N)
+  $path
+)
+
+# Snowflake
+path=(
+  /Applications/SnowflakeCLI.app/Contents/MacOS(N)
+  /Applications/SnowSQL.app/Contents/MacOS(N)
+  $path
+)
+
+# Docker, Fleet, local bin
+path=(
+  $HOME/.local/bin(N)
+  $HOME/.fleetctl(N)
+  $HOME/bin(N)
+  $path
+)
